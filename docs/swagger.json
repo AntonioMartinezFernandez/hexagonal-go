@@ -1,0 +1,123 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Hexagonal Go",
+        "title": "Hexagonal Go",
+        "contact": {
+            "name": "Antonio Martínez",
+            "url": "https://github.com/AntonioMartinezFernandez",
+            "email": "antonio@weffective.com"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/event-processor": {
+            "post": {
+                "description": "Event Processor Endpoint Validator",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Event Processor"
+                ],
+                "summary": "Event Processor Endpoint Validator",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.EventProcessorValidationResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/event-processor/process": {
+            "post": {
+                "description": "Event Processor",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Event Processor"
+                ],
+                "summary": "Event Processor",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.EventProcessorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "/healthcheck": {
+            "get": {
+                "description": "Get healthcheck",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Healthcheck"
+                ],
+                "summary": "Get healthcheck",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Healthcheck"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {}
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.EventProcessorResponse": {
+            "type": "object",
+            "required": [
+                "response"
+            ],
+            "properties": {
+                "response": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.EventProcessorValidationResponse": {
+            "type": "object",
+            "required": [
+                "validated"
+            ],
+            "properties": {
+                "validated": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.Healthcheck": {
+            "type": "object",
+            "required": [
+                "status"
+            ],
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

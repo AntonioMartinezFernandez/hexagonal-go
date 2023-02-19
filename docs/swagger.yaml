@@ -1,0 +1,81 @@
+basePath: /api/v1
+definitions:
+  models.EventProcessorResponse:
+    properties:
+      response:
+        type: string
+    required:
+    - response
+    type: object
+  models.EventProcessorValidationResponse:
+    properties:
+      validated:
+        type: boolean
+    required:
+    - validated
+    type: object
+  models.Healthcheck:
+    properties:
+      status:
+        type: string
+    required:
+    - status
+    type: object
+info:
+  contact:
+    email: antonio@weffective.com
+    name: Antonio Martínez
+    url: https://github.com/AntonioMartinezFernandez
+  description: Hexagonal Go
+  title: Hexagonal Go
+  version: "1.0"
+paths:
+  /event-processor:
+    post:
+      description: Event Processor Endpoint Validator
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.EventProcessorValidationResponse'
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Event Processor Endpoint Validator
+      tags:
+      - Event Processor
+  /event-processor/process:
+    post:
+      description: Event Processor
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.EventProcessorResponse'
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Event Processor
+      tags:
+      - Event Processor
+  /healthcheck:
+    get:
+      description: Get healthcheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Healthcheck'
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Get healthcheck
+      tags:
+      - Healthcheck
+swagger: "2.0"
